@@ -49,8 +49,8 @@ class Garment extends Model
 		'id_size',
 		'id_color',
 		'id_suplier',
-		'id_mark',
-		'id_model',
+		'id_brand_model',
+		'id_brand',
 		'reference',
 		'quantity',
 		'image'
@@ -59,5 +59,25 @@ class Garment extends Model
 	public function color()
 	{
 		return $this->belongsTo(Color::class, 'id_color');
+	}
+	public function family()
+	{
+		return $this->belongsTo(Family::class, 'id_family');
+	}
+	public function size()
+	{
+		return $this->belongsTo(Size::class, 'id_size');
+	}
+	public function suplier()
+	{
+		return $this->belongsTo(Suplier::class, 'id_suplier');
+	}
+	public function brand_model()
+	{
+		return $this->belongsTo(BrandModel::class, 'id_brand_model');
+	}
+	public function brand()
+	{
+		return $this->belongsTo(Brand::class, 'id_brand');
 	}
 }

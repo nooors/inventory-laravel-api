@@ -20,18 +20,18 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Mark extends Model
+class Brand extends Model
 {
-	protected $table = 'marks';
+	protected $table = 'brands';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'marc',
+		'brand',
 		'image'
 	];
 
 	public function modelos()
 	{
-		return $this->hasMany(Modelo::class, 'id_marca');
+		return $this->hasMany(Garment::class, 'id_brand');
 	}
 }

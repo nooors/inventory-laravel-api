@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 
-class CategoryController extends Controller
+class SuplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        $response = Category::all();
-        return response()->json($response);
+        //
     }
 
     /**
@@ -51,11 +48,15 @@ class CategoryController extends Controller
         //
     }
 
-
-    public function edit(int $id_category): JsonResponse
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $category = Category::find($id_category);
-        return response()->json($category);
+        //
     }
 
     /**

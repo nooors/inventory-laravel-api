@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+use App\Models\Color;
+
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index(): JsonResponse
     {
-        $response = Category::all();
-        return response()->json($response);
+        $colors = Color::all();
+        return response()->json($colors);
     }
 
     /**
@@ -46,16 +47,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Color $color): JsonResponse
     {
-        //
+        $color = Color::find($color);
+        return response()->json($color);
     }
 
-
-    public function edit(int $id_category): JsonResponse
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $category = Category::find($id_category);
-        return response()->json($category);
+        //
     }
 
     /**

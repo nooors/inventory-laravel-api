@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\BrandModel;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryController extends Controller
+class BrandModelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(): JsonResponse
     {
-        $response = Category::all();
+        $response = BrandModel::all();
         return response()->json($response);
     }
 
@@ -51,11 +48,15 @@ class CategoryController extends Controller
         //
     }
 
-
-    public function edit(int $id_category): JsonResponse
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $category = Category::find($id_category);
-        return response()->json($category);
+        //
     }
 
     /**

@@ -38,9 +38,6 @@ class BrandController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show(Brand $brand_id): JsonResponse
     {

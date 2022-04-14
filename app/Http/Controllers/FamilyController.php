@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Family;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FamilyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): JsonResponse
     {
-        //
+        $families = Family::all();
+        return response()->json($families);
     }
 
     /**
@@ -37,15 +36,12 @@ class FamilyController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+  
+    public function show(int $family_id):JsonResponse
     {
-        //
+        $family = Family::find($family_id);
+        
+        return response()->json($family_id);
     }
 
     /**

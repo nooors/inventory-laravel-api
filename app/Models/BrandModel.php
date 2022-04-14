@@ -22,20 +22,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class BrandModel extends Model
 {
-	protected $table = 'brand-models';
+	protected $table = 'brand_models';
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_brand' => 'int'
+		'id' => 'int'
 	];
 
 	protected $fillable = [
-		'id_brand',
+
 		'brand',
 		'image'
 	];
 
-	public function mark()
+	public function brandModel()
 	{
 		return $this->hasMany(Garment::class, 'id_brand');
 	}

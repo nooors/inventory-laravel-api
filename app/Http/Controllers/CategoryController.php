@@ -46,16 +46,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id_category): JsonResponse
     {
+        $category = Category::find($id_category);
+        return response()->json($category);
         //
     }
 
 
-    public function edit(int $id_category): JsonResponse
+    public function edit()
     {
-        $category = Category::find($id_category);
-        return response()->json($category);
     }
 
     /**

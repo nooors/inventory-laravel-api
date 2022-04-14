@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Size;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SizeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function index(): JsonResponse
     {
-        //
+        $sizes = Size::all();
+
+        return response()->json($sizes);
     }
 
     /**
@@ -37,15 +37,12 @@ class SizeController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function show(int $size_id):JsonResponse
     {
-        //
+        $size = Size::find($size_id);
+
+        return response()->json($size);
     }
 
     /**

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Suplier;
 use Illuminate\Http\Request;
 
 class SuplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function index():\Illuminate\Http\JsonResponse
     {
-        //
+        $supliers = Suplier::all();
+
+        return response()->json($supliers);
     }
 
     /**
@@ -39,13 +38,12 @@ class SuplierController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $suplier_id):\Illuminate\Http\JsonResponse
     {
-        //
+        $suplier = Suplier::find($suplier_id);
+
+        return response()->json($suplier);
     }
 
     /**

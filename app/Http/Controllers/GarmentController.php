@@ -40,13 +40,12 @@ class GarmentController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $garment_id): JsonResponse
     {
-        //
+        $garment = Garment::find($garment_id);
+
+        return response()->json($garment);
     }
 
     /**

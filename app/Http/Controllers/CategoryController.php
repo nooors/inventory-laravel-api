@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -31,26 +32,24 @@ class CategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request):JsonResponse
     {
-        //
+        $category = new Category();
+        $category -> category = $request->input('category');
+        $category -> image = $request -> input ('image');
+        
+        return response()->json($category);
     }
-
+    
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show(int $id_category): JsonResponse
     {
         $category = Category::find($id_category);
         return response()->json($category);
-        //
+        
     }
 
 
@@ -60,24 +59,26 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id):JsonResponse
     {
-        //
+        $category = Category::find($id);
+        $category -> category = $request->input('category');
+        $category -> image = $request -> input ('image');
+
+        return response()->json($category);
+
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        return response("Item deleted succesfully", 200);
+        
     }
 }

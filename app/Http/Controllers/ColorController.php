@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 use App\Models\Color;
+use Illuminate\Http\Response;
 
 class ColorController extends Controller
 {
@@ -32,13 +33,15 @@ class ColorController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $color = new Color();
+        $color->color = $request->input('color');
+        $color->code = $request->input('code');
+        $color->order = $request->insput('order');
+
+        return response('Item stored succesfully', 200)->json($color);
     }
 
     /**
@@ -66,24 +69,27 @@ class ColorController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        $color = Color::find($id);
+        $color->color = $color->input('color');
+        $color->code = $color->input('code');
+        $color->order = $color->input('order');
+
+        $color->save();
+
+        return response('Item updated succesfully', 200)->json($color);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
-        //
+        $color = Color::find($id);
+        $color->delete();
+
+        return response('Item deleted succesfully', 200);
     }
 }

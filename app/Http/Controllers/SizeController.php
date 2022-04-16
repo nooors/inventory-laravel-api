@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Size;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
 class SizeController extends Controller
 {
     
@@ -28,13 +28,15 @@ class SizeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request):JsonResponse
     {
-        //
+        $size = new Size();
+        $size->size = $request()->input('size');
+
+        $size->save();
+
+        return response('Item stored succesfully', 200)->json($size);
     }
 
     
@@ -58,24 +60,24 @@ class SizeController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id):JsonResponse
     {
-        //
+        $size = Size::find($id);
+        $size->save();
+
+        return response('Item updated succesfully', 200)->json($size);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id):Response
     {
-        //
+        $size = Size::find($id);
+
+        $size->delete();
+
+        return response('Item deleted successfully', 200);
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class BrandModelController extends Controller
 {
-    
+
     public function index(): JsonResponse
     {
         $response = BrandModel::all();
@@ -25,19 +25,20 @@ class BrandModelController extends Controller
     {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request):JsonResponse
     {
-        //
+        $brandModel = new BrandModel();
+        $brandModel->brand = $request->input('brandModel');
+        $brandModel->image = $request->input('image');
+        
+        return response()->json($brandModel);
     }
 
- 
+
     public function show($id): JsonResponse
     {
         $brandModel = BrandModel::find($id);
@@ -57,14 +58,15 @@ class BrandModelController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        $brandModel = BrandModel::find($id);
+        $brandModel->brand = $request->input('brandModel');
+        $brandModel->image = $request->input('image');
+        $brandModel->save();
+
+        return response()->json($brandModel);
     }
 
     /**
@@ -73,8 +75,11 @@ class BrandModelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
-        //
+        $brandModel = BrandModel::find($id);
+        $brandModel->delete();
+
+        return response()->json($brandModel);
     }
 }

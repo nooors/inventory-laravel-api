@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Family;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FamilyController extends Controller
 {
@@ -27,20 +28,23 @@ class FamilyController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $family = new Family();
+        $family->family = request()->input('family');
+        $family->image = request()->input('image');
+
+        $family->save();
+
+        return response('Item stored succesfully', 200)->json($family);
     }
 
-  
-    public function show(int $family_id):JsonResponse
+
+    public function show(int $family_id): JsonResponse
     {
         $family = Family::find($family_id);
-        
+
         return response()->json($family_id);
     }
 
@@ -57,24 +61,26 @@ class FamilyController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id):JsonResponse
     {
-        //
+        $family = Family::find($id);
+        $family->family = $request()->input('family');
+        $family->image = $request()->input('image');
+
+        $family->save();
+
+        return response('Item stored succesfully', 200)->json($family);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id):Response
     {
-        //
+        $family = Family::find($id);
+        $family->delete();
+
+        return response('Item deleted succesfully', 200);
     }
 }

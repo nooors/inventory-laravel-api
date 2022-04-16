@@ -27,13 +27,15 @@ class BrandController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request):JsonResponse
     {
-        //
+        $brand = new Brand();
+        $brand->brand = $request->input('brand');
+        $brand->image = $request->input('image');
+        $brand->save();
+
+        return response()->json($brand);
     }
 
     /**
@@ -58,14 +60,24 @@ class BrandController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $brand = Brand::find($id);
+        if ($brand !== null) {
+            $brand->brand = $request->input('brand');
+            $brand->image = $request->input('image');
+            $brand->save();
+            return Brand::find($id);
+            // return $this->create($request, $brand);
+            // return view('api', [
+            //    "brand" => $brand,
+            //    "request_brand" => $request->input('brand'),
+            //    "request_image" => $request->input('image')
+            // ]);
+        } else {
+            return response(['error' => true, 'message' => "404. Resource not found, The brand doesn't exist"], 404);
+        }
     }
 
     /**
@@ -74,8 +86,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, int $id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->delete();
     }
 }

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Suplier;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class SuplierController extends Controller
 {
-    
-    public function index():\Illuminate\Http\JsonResponse
+
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $supliers = Suplier::all();
 
@@ -27,19 +29,24 @@ class SuplierController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $suplier = Suplier::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'telephone' => $request->telephone,
+            'contact' => $request->contact,
+            'image' => $request->image
+        ]);
+
+        return response('Item updated successfully', 200)->json($suplier);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(int $suplier_id):\Illuminate\Http\JsonResponse
+    public function show(int $suplier_id): \Illuminate\Http\JsonResponse
     {
         $suplier = Suplier::find($suplier_id);
 
@@ -59,24 +66,24 @@ class SuplierController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        $suplier = Suplier::find($id);
+
+        $suplier->update($request->validate());
+
+        return response('Item updated successfully', 200)->json($suplier);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id):Response
     {
-        //
+        $suplier = Suplier::find($id);
+        $suplier -> delete();
+
+        return response('Item delted successfully', 200);
     }
 }

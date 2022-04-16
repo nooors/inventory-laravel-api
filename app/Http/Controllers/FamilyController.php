@@ -32,8 +32,8 @@ class FamilyController extends Controller
     public function store(Request $request): JsonResponse
     {
         $family = new Family();
-        $family->family = request()->input('family');
-        $family->image = request()->input('image');
+        $family->family = $request()->input('family');
+        $family->image = $request()->input('image');
 
         $family->save();
 
@@ -45,7 +45,7 @@ class FamilyController extends Controller
     {
         $family = Family::find($family_id);
 
-        return response()->json($family_id);
+        return response()->json($family);
     }
 
     /**
@@ -62,7 +62,7 @@ class FamilyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id):JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         $family = Family::find($id);
         $family->family = $request()->input('family');
@@ -76,7 +76,7 @@ class FamilyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id):Response
+    public function destroy($id): Response
     {
         $family = Family::find($id);
         $family->delete();

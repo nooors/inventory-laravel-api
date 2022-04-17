@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function store(Request $request):JsonResponse
     {
         $category = new Category();
-        $category -> category = $request->input('category');
+        $category -> name = $request->input('name');
         $category -> image = $request -> input ('image');
         
         return response()->json($category);
@@ -63,7 +63,7 @@ class CategoryController extends Controller
     public function update(Request $request, int $id):JsonResponse
     {
         $category = Category::find($id);
-        $category -> category = $request->input('category');
+        $category -> name = $request->input('name');
         $category -> image = $request -> input ('image');
 
         return response()->json($category);

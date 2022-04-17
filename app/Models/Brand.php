@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Mark
  * 
  * @property int $id
- * @property string|null $marc
+ * @property string|null $name
  * @property string|null $image
  * 
  * @property Collection|Modelo[] $modelos
@@ -26,7 +26,7 @@ class Brand extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'brand',
+		'name',
 		'image'
 	];
 

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Family
  * 
  * @property int $id
- * @property string $family
+ * @property string $name
  * @property string|null $image
  *
  * @package App\Models
@@ -23,7 +23,7 @@ class Family extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'family',
+		'name',
 		'image'
 	];
 }

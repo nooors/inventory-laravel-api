@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Category
  * 
  * @property int $id
- * @property string $categoria
+ * @property string $name
  * @property string|null $imagen
  *
  * @package App\Models
@@ -23,7 +23,7 @@ class Category extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'categoria',
+		'name',
 		'imagen'
 	];
 }

@@ -32,7 +32,7 @@ class BrandModelController extends Controller
     public function store(Request $request):JsonResponse
     {
         $brandModel = new BrandModel();
-        $brandModel->brand = $request->input('brandModel');
+        $brandModel->name = $request->input('name');
         $brandModel->image = $request->input('image');
         
         return response()->json($brandModel);
@@ -62,7 +62,7 @@ class BrandModelController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         $brandModel = BrandModel::find($id);
-        $brandModel->brand = $request->input('brandModel');
+        $brandModel->name = $request->input('name');
         $brandModel->image = $request->input('image');
         $brandModel->save();
 

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $id_brand
- * @property string $model
+ * @property string $name
  * @property string|null $image
  * 
  * @property Brand $brand
@@ -31,7 +31,7 @@ class BrandModel extends Model
 
 	protected $fillable = [
 
-		'brand',
+		'name',
 		'image'
 	];
 

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Size
  * 
  * @property int $id
- * @property string $size
+ * @property string $name
  *
  * @package App\Models
  */
@@ -22,6 +22,6 @@ class Size extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'size'
+		'name'
 	];
 }

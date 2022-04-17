@@ -32,7 +32,7 @@ class SizeController extends Controller
     public function store(Request $request):JsonResponse
     {
         $size = new Size();
-        $size->size = $request()->input('size');
+        $size->name = $request()->input('name');
 
         $size->save();
 
@@ -64,6 +64,7 @@ class SizeController extends Controller
     public function update(Request $request, int $id):JsonResponse
     {
         $size = Size::find($id);
+        $size->name = $request()->input('name');
         $size->save();
 
         return response('Item updated succesfully', 200)->json($size);

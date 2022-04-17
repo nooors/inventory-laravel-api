@@ -32,7 +32,7 @@ class FamilyController extends Controller
     public function store(Request $request): JsonResponse
     {
         $family = new Family();
-        $family->family = $request()->input('family');
+        $family->name = $request()->input('name');
         $family->image = $request()->input('image');
 
         $family->save();
@@ -65,7 +65,7 @@ class FamilyController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         $family = Family::find($id);
-        $family->family = $request()->input('family');
+        $family->name = $request()->input('name');
         $family->image = $request()->input('image');
 
         $family->save();

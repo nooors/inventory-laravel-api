@@ -31,7 +31,7 @@ class BrandController extends Controller
     public function store(Request $request):JsonResponse
     {
         $brand = new Brand();
-        $brand->brand = $request->input('brand');
+        $brand->name = $request->input('name');
         $brand->image = $request->input('image');
         $brand->save();
 
@@ -65,7 +65,7 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
         if ($brand !== null) {
-            $brand->brand = $request->input('brand');
+            $brand->name = $request->input('name');
             $brand->image = $request->input('image');
             $brand->save();
             return Brand::find($id);

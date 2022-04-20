@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $name
- * @property string|null $imagen
+ * @property string|null $image
  *
  * @package App\Models
  */
@@ -24,6 +24,6 @@ class Category extends Model
 
 	protected $fillable = [
 		'name',
-		'imagen'
+		'image'
 	];
 }

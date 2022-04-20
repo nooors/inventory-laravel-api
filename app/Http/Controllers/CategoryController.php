@@ -33,15 +33,13 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):JsonResponse
+    public function store(Request $request): JsonResponse
     {
-        $category = new Category();
-        $category -> name = $request->input('name');
-        $category -> image = $request -> input ('image');
-        
-        return response()->json($category);
+        $category = Category::create($request->all());
+
+        return response()->json($request);
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -49,7 +47,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id_category);
         return response()->json($category);
-        
     }
 
 
@@ -60,14 +57,15 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id):JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         $category = Category::find($id);
-        $category -> name = $request->input('name');
-        $category -> image = $request -> input ('image');
+        $category->name = $request->input('name');
+        $category->image = $request->input('image');
+
+        $category->save();
 
         return response()->json($category);
-
     }
 
     /**
@@ -79,6 +77,5 @@ class CategoryController extends Controller
         $category->delete();
 
         return response("Item deleted succesfully", 200);
-        
     }
 }

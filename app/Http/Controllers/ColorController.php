@@ -39,7 +39,9 @@ class ColorController extends Controller
         $color = new Color();
         $color->color = $request->input('color');
         $color->code = $request->input('code');
-        $color->order = $request->insput('order');
+        $color->order = $request->input('order');
+
+        $color->save();
 
         return response('Item stored succesfully', 200)->json($color);
     }
